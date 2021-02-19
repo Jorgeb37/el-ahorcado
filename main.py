@@ -72,14 +72,14 @@ def mostrarTablero(IMÁGENES_AHORCADO, letrasIncorrectas, letrasCorrectas,palabr
     print(letra, end=' ')
   print()
 
-  espaciosVacíos = '_' * len(palabraSecreta)
+  espaciosVacios = '_' * len(palabraSecreta)
 
   for i in range(len(palabraSecreta)): # completar los espacios vacíos con las letras adivinadas
     if palabraSecreta[i] in letrasCorrectas:
-      espaciosVacíos = espaciosVacíos[:i] + palabraSecreta[i] + espaciosVacíos[i+1:]
+      espaciosVacios = espaciosVacios[:i] + palabraSecreta[i] + espaciosVacios[i+1:]
 
-      for letra in espaciosVacíos: # mostrar la palabra secreta con espacios entre cada letra
-       print(letra, end=' ')
+  for letra in espaciosVacios: # mostrar la palabra secreta con espacios entre cada letra
+      print(letra, end=' ')
       print()
 
 def obtenerIntento(letrasProbadas):
@@ -107,41 +107,41 @@ print('A H O R C A D O')
 letrasIncorrectas = ''
 letrasCorrectas = ''
 palabraSecreta = obtenerPalabraAlAzar(palabras)
-juegoTerminado = False
+juegoTerminado = True
 
 while True:
   mostrarTablero(IMAGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta)
 
-# Permite al jugador escribir una letra.
-intento = obtenerIntento(letrasIncorrectas + letrasCorrectas)
+  # Permite al jugador escribir una letra.
+  intento = obtenerIntento(letrasIncorrectas + letrasCorrectas)
 
-if intento in palabraSecreta:
-  letrasCorrectas = letrasCorrectas + intento
+  if intento in palabraSecreta:
+    letrasCorrectas = letrasCorrectas + intento
 
-  # Verifica si el jugador ha ganado.
-  encontradoTodasLasLetras = True
-  for i in range(len(palabraSecreta)):
-    if palabraSecreta[i] not in letrasCorrectas:
-      encontradoTodasLasLetras = False
-      break
-  if encontradoTodasLasLetras:
-    print('¡Sí! ¡La palabra secreta es "' + palabraSecreta + '"!¡Has ganado!')
-    juegoTerminado = True
-else:
-  letrasIncorrectas = letrasIncorrectas + intento
+    # Verifica si el jugador ha ganado.
+    encontradoTodasLasLetras = True
+    for i in range(len(palabraSecreta)):
+      if palabraSecreta[i] not in letrasCorrectas:
+        encontradoTodasLasLetras = False
+        break
+    if encontradoTodasLasLetras:
+        print('¡Sí! ¡La palabra secreta es "' + palabraSecreta + '"!¡Has ganado!')
+        juegoTerminado = True
+  else:
+    letrasIncorrectas = letrasIncorrectas + intento
  
-  # Comprobar si el jugador ha agotado sus intentos y ha perdido.
-  if len(letrasIncorrectas) == len(IMAGENES_AHORCADO) - 1:
-    mostrarTablero(IMAGENES_AHORCADO, letrasIncorrectas,letrasCorrectas, palabraSecreta)
-    print('¡Te has quedado sin intentos!\nDespués de ' + str(len(letrasIncorrectas)) + ' intentos fallidos y ' + str(len(letrasCorrectas)) + ' aciertos, la palabra era "' + palabraSecreta + '"')
-    juegoTerminado = True
+    # Comprobar si el jugador ha agotado sus intentos y ha perdido.
+    if len(letrasIncorrectas) == len(IMAGENES_AHORCADO) - 1:
+      mostrarTablero(IMAGENES_AHORCADO, letrasIncorrectas,letrasCorrectas, palabraSecreta)
+      print('¡Te has quedado sin intentos!\nDespués de ' + str(len(letrasIncorrectas)) + ' intentos fallidos y ' + str(len(letrasCorrectas)) + ' aciertos, la palabra era "' + palabraSecreta + '"')
+      juegoTerminado = True
     
     # Preguntar al jugador si quiere volver a jugar (pero sólo si el juego ha terminado).
-    if juegoTerminado:
-      if jugarDeNuevo():
-        letrasIncorrectas = ''
-        letrasCorrectas = ''
-        juegoTerminado = False
-        palabraSecreta = obtenerPalabraAlAzar(palabras)
-      else:
-       break
+  if juegoTerminado:
+   if jugarDeNuevo():
+      letrasIncorrectas = ''
+      letrasCorrectas = ''
+      juegoTerminado = False
+      palabraSecreta = obtenerPalabraAlAzar(palabras)
+   else:
+      break
