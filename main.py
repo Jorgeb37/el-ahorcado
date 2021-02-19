@@ -107,7 +107,7 @@ print('A H O R C A D O')
 letrasIncorrectas = ''
 letrasCorrectas = ''
 palabraSecreta = obtenerPalabraAlAzar(palabras)
-juegoTerminado = True
+juegoTerminado = False
 
 while True:
   mostrarTablero(IMAGENES_AHORCADO, letrasIncorrectas, letrasCorrectas, palabraSecreta)
