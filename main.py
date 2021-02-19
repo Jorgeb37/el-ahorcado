@@ -122,8 +122,8 @@ while True:
     encontradoTodasLasLetras = True
     for i in range(len(palabraSecreta)):
       if palabraSecreta[i] not in letrasCorrectas:
-        encontradoTodasLasLetras = False
-        break
+          encontradoTodasLasLetras = False
+          break
     if encontradoTodasLasLetras:
         print('¡Sí! ¡La palabra secreta es "' + palabraSecreta + '"!¡Has ganado!')
         juegoTerminado = True
